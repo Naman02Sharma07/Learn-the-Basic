@@ -1,35 +1,18 @@
-//expressjs setup 
-//install✅
-//express js boilderplate✅
-      //go to npm✅
-    //   search express✅
-    // copy the code✅
-//expressjs setup✅
-      //install ejs✅
-      //set view engine✅
-      //create view folders✅
-      //create ejs files✅
-      //render ejs files inside route ✅
-//express statis file setup✅
-//architecture of public folder✅
+//now we are going to use the express generator that would create express folder that allow us to put all the 
+//files into the new folder that we gnerally write 
+
+//steps to use use express generator 
+//install in laptop globally 
+//npm i express-generator -g
+
+//to create a new app anywhere:
+//open cmd move to desktop
+//create new app
+//express appname --view=ejs
+
+//now use three commands
+//cd appname
+//npm i
+//open it on vscode 
 
 
-
-
-
-const express = require('express')
-const app = express()
-
-app.set("view engine","ejs");//this is the way by which we set the view engine 
-app.use(express.static("./public"))
-app.get('/', function (req, res) {
-  res.render("index")
-})
-
-app.listen(3000)
-
-
-//everytime we create a neew project we have to create everything from the start instead of doing it again again we can do it 
-//by the help of express genrator
-//programmer life is about creating the thing more effectively 
-//to crreate new thing 
