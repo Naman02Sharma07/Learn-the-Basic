@@ -16,3 +16,11 @@
 //open it on vscode 
 
 
+//on code side of the database                       mongodb side
+    //you have to setup the database       --->              //DB formation 
+    //create model                         --->              //Collection
+    //and have to screate a schema         --->              //documentation
+
+    
+
+
