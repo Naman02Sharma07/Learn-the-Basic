@@ -7,9 +7,43 @@ const userModel = require("./users");
 
 
 router.get('/',function(req,res){//we use router.get instead of the app.get because above we use the varable router 
-  //we are not goona change it bcoz it will mess us the whole thing 
+  //we are not goona change it bcoz it will mess us the whole thing because the app has lready been used as var in the app.js 
+
+  res.cookie("age",30);//this is thw way we store the cookies on the browser 
+
+
+  req.session.ban = true;//the session goes in the form of a request because it has been stored on the backend that is on the server 
+  //this means a session name ban has been stored in the server for a particular user and it get store the value true for it 
   res.render("index");
 })
+
+
+router.get("/readcookies",function(req,res){
+  console.log(req.cookies);//this wil give the cookies 
+  res.send("checked we get the cookie")
+})
+
+router.get("/deletecookies",function(req,res){
+  res.clearCookie("age");
+  res.send("yup we have delete the cookies ")
+})
+
+
+router.get('/checkban',function(req,res){
+  console.log(req.session)//where ever you have use the session you can put or print in in any of the routes because it has been stored in the server 
+  res.send("check if it is printing or not ")//this is to see if our session implement correctly or not
+})
+
+
+router.get("/removeban",function(req,res){
+  req.session.destroy(function(err){//this is used to destroy the session that we stored in our session
+    if(err) throw err;
+    console.log(err);
+
+    res.send("ban removed");
+  })
+})
+
 
 router.get("/create",async function(req,res){//but the thing is the await that we used in the next line won't work if we don't use the async keyword 
 
@@ -21,6 +55,9 @@ router.get("/create",async function(req,res){//but the thing is the await that w
     user:"raj",
     age:21,
   });
+  req.session.ban = true;//this meand a session name ban has been stored in the server for a particular user and it get store the value true for it 
+
+
   res.send(createduser)//this is the response that we get when we run the code 
 })
 //await don't work alone it has to work with the async so where do we put thw the async
@@ -53,3 +90,15 @@ module.exports = router;
 
 
 /**now we go understand what is the meaning of the session and the cookies*/
+
+//cookie                                                           session
+//data store in the browser                                        //data store in the server
+//data store on the frontend                                       //data store in the backend 
+//there is some data that we want our browser to store             //there is some data that we want our server to store 
+//we store the data because maybe in future we can again used that data
+//this is not safe                                                 //it is not safe 
+//it can be manipulated                                             //it cannot be manipulated 
+
+
+//to create a seeion we req.session.session name 
+// to destroy we use req.session.destroy
